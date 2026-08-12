@@ -1,13 +1,27 @@
 import { createRoot } from "react-dom/client";
-
+import React from "react";
+class Hello extends React.Component {
+  render() {
+    return <h1>سلام دوستان </h1>;
+  }
+}
+class Timer extends React.Component {
+  render() {
+    return <h2>الان دقیقا ساعت {new Date().toLocaleTimeString()}</h2>;
+  }
+}
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Hello />
+        <Timer />
+      </div>
+    );
+  }
+}
 const tick = () => {
-  const elem = (
-    <div>
-      <h1>سلام دوستان </h1>
-      <h2>الان دقیقا ساعت {new Date().toLocaleTimeString()}</h2>
-    </div>
-  );
-  root.render(elem);
+  root.render(<App />);
 };
 const root = createRoot(document.getElementById("root"));
 

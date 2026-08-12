@@ -1,10 +1,16 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { createRoot } from "react-dom/client";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+const tick = () => {
+  const elem = (
+    <div>
+      <h1>سلام دوستان </h1>
+      <h2>الان دقیقا ساعت {new Date().toLocaleTimeString()}</h2>
+    </div>
+  );
+  root.render(elem);
+};
+const root = createRoot(document.getElementById("root"));
+
+setInterval(() => {
+  tick();
+}, 1000);

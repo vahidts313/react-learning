@@ -3,7 +3,7 @@ import React from "react";
 import "./style.css";
 class Hello extends React.Component {
   render() {
-    return <h1>سلام دوستان </h1>;
+    return <h1>{this.props.title}</h1>;
   }
 }
 

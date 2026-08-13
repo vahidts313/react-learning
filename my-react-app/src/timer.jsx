@@ -47,6 +47,7 @@ class Timer extends React.Component {
         <button onClick={this.resetInterval}>ریست تایمر</button>
         <button onClick={this.startInterval}>شروع تایمر</button>
         <button onClick={this.stopInterval}>توقف تایمر</button>
+        <button onClick={this.props.handleSetTitle}>تغییر عنوان</button>
       </div>
     );
   }

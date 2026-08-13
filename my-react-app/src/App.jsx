@@ -8,7 +8,7 @@ class App extends React.Component {
     super();
     this.state = { title: "سلام دوستان عزیزم" };
   }
-  handleSetTitle = (newTitle) => {
+  handleSetTitle = () => {
     this.setState({ title: "به وبسایت خودتان خوش آمدید " });
   };
 

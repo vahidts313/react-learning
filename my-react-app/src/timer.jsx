@@ -8,17 +8,23 @@ class Timer extends React.Component {
     super();
     this.state = { time: 10 };
   }
-
-  componentDidMount() {
-    console.log("componentDidMount");
+  startInterval = () => {
     interval = setInterval(() => {
       this.setState({ time: this.state.time - 1 });
     }, 1000);
+  };
+
+  stopInterval = () => {
+    clearInterval(interval);
+  };
+
+  componentDidMount() {
+    this.startInterval();
   }
 
   componentDidUpdate() {
     if (this.state.time === 0) {
-      clearInterval(interval);
+      this.stopInterval();
     }
   }
 
@@ -32,6 +38,8 @@ class Timer extends React.Component {
       <div>
         <h2 className="timer">it is {this.state.time}</h2>
         <button onClick={() => this.props.handleSetTitle()}>تغییر عنوان</button>
+        <button onClick={this.startInterval}>شروع تایمر</button>
+        <button onClick={this.stopInterval}>توقف تایمر</button>
       </div>
     );
   }

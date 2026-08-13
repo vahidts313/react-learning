@@ -6,38 +6,45 @@ var interval;
 class Timer extends React.Component {
   constructor() {
     super();
-    this.state = { time: 10 };
+    this.state = { hour: 0, minute: 0, second: 0, isStarted: false };
   }
   startInterval = () => {
-    interval = setInterval(() => {
-      this.setState({ time: this.state.time - 1 });
-    }, 1000);
+    if (!this.state.isStarted) {
+      this.setState({ isStarted: true });
+
+      interval = setInterval(() => {
+        this.setState({ second: this.state.second + 1 });
+        if (this.state.second === 60) {
+          this.setState({ second: 0, minute: this.state.minute + 1 });
+        }
+        if (this.state.minute === 60) {
+          this.setState({ minute: 0, hour: this.state.hour + 1 });
+        }
+      }, 1000);
+    }
   };
 
   stopInterval = () => {
+    this.setState({ isStarted: false });
     clearInterval(interval);
   };
 
-  componentDidMount() {
-    this.startInterval();
-  }
-
-  componentDidUpdate() {
-    if (this.state.time === 0) {
-      this.stopInterval();
-    }
-  }
-
-  componentWillUnmount() {
+  resetInterval = () => {
+    this.setState({ hour: 0, minute: 0, second: 0 });
     clearInterval(interval);
-  }
+    this.setState({ isStarted: false });
+  };
 
   render() {
-    console.log("render");
+    let h = this.state.hour;
+    let m = this.state.minute;
+    let s = this.state.second;
     return (
       <div>
-        <h2 className="timer">it is {this.state.time}</h2>
-        <button onClick={() => this.props.handleSetTitle()}>تغییر عنوان</button>
+        <h2 className="timer">
+          {`${h < 10 ? "0" + h : h} : ${m < 10 ? "0" + m : m} : ${s < 10 ? "0" + s : s}`}
+        </h2>
+        <button onClick={this.resetInterval}>ریست تایمر</button>
         <button onClick={this.startInterval}>شروع تایمر</button>
         <button onClick={this.stopInterval}>توقف تایمر</button>
       </div>

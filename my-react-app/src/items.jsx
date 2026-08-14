@@ -3,7 +3,14 @@ import { TestContext } from "./testContext";
 
 const Item = (props) => {
   const context = useContext(TestContext);
-  return <div style={{ color: context }}>{props.children}</div>;
+  const handleRemove = (e) => {
+    context.setTimeArr(context.timeArr.filter((c) => c !== e.target.innerHTML));
+  };
+  return (
+    <div style={{ color: context }} onClick={handleRemove}>
+      {props.children}
+    </div>
+  );
 };
 
 export default Item;

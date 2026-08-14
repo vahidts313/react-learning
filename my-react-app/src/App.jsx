@@ -10,9 +10,9 @@ const App = () => {
   const [title, setTitle] = React.useState("سلام دوستان عزیزم");
   const [isLight, setIsLight] = React.useState(false);
   const [timeArr, setTimeArr] = React.useState([
-    <button>00 : 05 : 01</button>,
-    <button>00 : 05 : 02</button>,
-    <button>00 : 05 : 03</button>,
+    "00 : 05 : 01",
+    "00 : 05 : 02",
+    "00 : 05 : 03",
   ]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const App = () => {
   };
 
   return (
-    <TestContext.Provider value={{ timeArr: timeArr, setTimeArr: setTimeArr }}>
+    <TestContext.Provider value={{ timeArr, setTimeArr }}>
       <div
         className="main"
         style={{
@@ -37,7 +37,7 @@ const App = () => {
       >
         <Hello title={title} />
         <Timer isLight={isLight} handleSetIsLight={handleSetIsLight} />
-        <TimeList>{timeArr}</TimeList>
+        <TimeList />
       </div>
     </TestContext.Provider>
   );

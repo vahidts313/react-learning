@@ -39,21 +39,9 @@ class Timer extends React.Component {
   };
 
   handleSaveTime = () => {
-    let h = this.state.hour;
-    let m = this.state.minute;
-    let s = this.state.second;
-    let newTime = (
-      <button onClick={this.handleremoveTime}>
-        {h > 9 ? h : "0" + h} : {m > 9 ? m : "0" + m} : {s > 9 ? s : "0" + s}
-      </button>
-    );
-    this.context.setTimeArr([...this.context.timeArr, newTime]);
-  };
+    let newTime = document.querySelector(".timer").innerHTML;
 
-  handleremoveTime = (index) => {
-    let newArr = [...this.context.timeArr];
-    newArr.splice(index, 1);
-    this.context.setTimeArr(newArr);
+    this.context.setTimeArr([...this.context.timeArr, newTime]);
   };
 
   render() {
